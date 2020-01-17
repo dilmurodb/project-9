@@ -4,6 +4,8 @@ from datetime import date
 db = PostgresqlDatabase('contacts', user='postgres', password='',
                         host='localhost', port=5432)
 
+contact_info = input("Please enter your contact info:")
+
 class BaseModel(Model):
     class Meta:
         database = db
