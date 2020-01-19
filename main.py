@@ -28,6 +28,11 @@ def create_contact():
     newcontact.save()
     print(newcontact.name + " " + newcontact.phone + " " + newcontact.email + " " + newcontact.address)
 
+def delete_contact():
+    contact_name_delete = input("Enter The name of the contact you want to delete: ")
+    contact_firstname = Contact.get(Contact.name == contact_name_delete)
+    contact_firstname.delete_instance()
+
 class BaseModel(Model):
     class Meta:
         database = db
@@ -55,7 +60,8 @@ elif intro_question == "Read":
 
 
 elif intro_question == "Delete":
-    delete_contact = input("Enter the Full Name of the contact you want to delete: ")
+    # delete_contact = input("Enter the Full Name of the contact you want to delete: ")
+    delete_contact()
 
 
 
@@ -64,11 +70,11 @@ elif intro_question == "Delete":
 
 db.create_tables([Contact])
 
-dilmurod = Contact(name='Dilmurod Bukharov', phone='4121234567', 
-email='d.bukharov@gmail.com', address='Washington DC')
-someperson = Contact(name='Some Person', phone='9876543251', 
-email='d.bukharov@ganymail.com', address='NYC')
-dilmurod.save()
-someperson.save()
+# dilmurod = Contact(name='Dilmurod Bukharov', phone='4121234567', 
+# email='d.bukharov@gmail.com', address='Washington DC')
+# someperson = Contact(name='Some Person', phone='9876543251', 
+# email='d.bukharov@ganymail.com', address='NYC')
+# dilmurod.save()
+# someperson.save()
 
 # read_contact()
