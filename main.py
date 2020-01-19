@@ -12,7 +12,7 @@ def read_contact():
     contacts = Contact.select()
     for contact in contacts:
         print(contact)
-        print(contact.name + " " + contact.phone + " " + contact.email + " " + contact.address)
+        print(contact.firstname + " " + contact.lastname + " " + contact.phone + " " + contact.email + " " + contact.address)
         # print(contact.name)
 
 # def update_contact(update_contact):
@@ -20,17 +20,18 @@ def read_contact():
 #     Contact.phone =
 
 def create_contact():
-    contact_name = input("Enter First Name: ")
+    contact_firstname = input("Enter First Name: ")
+    contact_lastname = input("Enter Last Name: ")
     contact_phone = input("Enter Phone Number: ")
     contact_email = input("Enter Email: ")
     contact_address = input("Enter Address: ")
-    newcontact = Contact(name = contact_name, phone = contact_phone, email = contact_email, address = contact_address)
+    newcontact = Contact(firstname = contact_firstname, lastname = contact_lastname, phone = contact_phone, email = contact_email, address = contact_address)
     newcontact.save()
-    print(newcontact.name + " " + newcontact.phone + " " + newcontact.email + " " + newcontact.address)
+    print(newcontact.firstname + " " + newcontact.lastname + " " + newcontact.phone + " " + newcontact.email + " " + newcontact.address)
 
 def delete_contact():
-    contact_name_delete = input("Enter The name of the contact you want to delete: ")
-    contact_firstname = Contact.get(Contact.name == contact_name_delete)
+    contact_name_delete = input("Enter The first name of the contact you want to delete: ")
+    contact_firstname = Contact.get(Contact.firstname == contact_name_delete)
     contact_firstname.delete_instance()
 
 class BaseModel(Model):
@@ -38,7 +39,8 @@ class BaseModel(Model):
         database = db
 
 class Contact(BaseModel):
-    name = CharField()
+    firstname = CharField()
+    lastname = CharField()
     phone = CharField()
     email = CharField()
     address = CharField()
@@ -52,7 +54,7 @@ if intro_question == "Create":
 
 
 elif intro_question == "Read":
-    update_contact = input("Enter First Name: ")
+    # update_contact = input("Enter First Name: ")
     read_contact()
 
     # update_contact = input("Enter Phone Number: ")
@@ -68,11 +70,11 @@ elif intro_question == "Delete":
 #remove this when you want your database to start saving forever
 # db.drop_tables([Contact])
 
-db.create_tables([Contact])
+# db.create_tables([Contact])
 
-# dilmurod = Contact(name='Dilmurod Bukharov', phone='4121234567', 
+# dilmurod = Contact(firstname='Dilmurod', lastname='Bukharov', phone='4121234567', 
 # email='d.bukharov@gmail.com', address='Washington DC')
-# someperson = Contact(name='Some Person', phone='9876543251', 
+# someperson = Contact(firstname='Some', lastname='Person', phone='9876543251', 
 # email='d.bukharov@ganymail.com', address='NYC')
 # dilmurod.save()
 # someperson.save()
