@@ -30,6 +30,8 @@ def update_contact():
     updated_info.phone = new_phone
     new_email = input("Enter new Email: ")
     updated_info.email = new_email
+    new_address = input("Enter new Address: ")
+    updated_info.address = new_address
     updated_info.save() 
 
 
