@@ -24,13 +24,13 @@ def create_contact():
     print(newcontact.firstname + " " + newcontact.lastname + " " + newcontact.phone + " " + newcontact.email + " " + newcontact.address)
 
 def update_contact():
-    update_by_firstname = input("Enter the First Name of the contact you want to update: ")
-    update_firstname = Contact.get(Contact.firstname == update_by_firstname)
+    update_find_by_firstname = input("Enter the First Name of the contact you want to update: ")
+    updated_info = Contact.get(Contact.firstname == update_find_by_firstname)
     new_phone = input("Enter the new number: ")
-    update_firstname.phone = new_phone
+    updated_info.phone = new_phone
     new_email = input("Enter new Email: ")
-    update_firstname.email = new_email
-    update_firstname.save() 
+    updated_info.email = new_email
+    updated_info.save() 
 
 
 def find_contact():
