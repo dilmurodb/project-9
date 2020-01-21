@@ -3,7 +3,7 @@ from peewee import *
 db = PostgresqlDatabase('contacts', user='postgres', password='',
                         host='localhost', port=5432)
 
-intro_question = input("What would you like to do with Contacts? Create? Read? Find? Delete? ")
+intro_question = input("What would you like to do with Contacts? Create? Read? Find? Delete? Update? ")
 
 
 def read_contact():
@@ -22,6 +22,16 @@ def create_contact():
     newcontact = Contact(firstname = contact_firstname, lastname = contact_lastname, phone = contact_phone, email = contact_email, address = contact_address)
     newcontact.save()
     print(newcontact.firstname + " " + newcontact.lastname + " " + newcontact.phone + " " + newcontact.email + " " + newcontact.address)
+
+def update_contact():
+    update_by_firstname = input("Enter the First Name of the contact you want to update: ")
+    update_firstname = Contact.get(Contact.firstname == update_by_firstname)
+    new_phone = input("Enter the new number: ")
+    update_firstname.phone = new_phone
+    new_email = input("Enter new Email: ")
+    update_firstname.email = new_email
+    update_firstname.save() 
+
 
 def find_contact():
     find_contact_by_firstname = input("Enter First Name of the contact you want to find: ")
@@ -60,3 +70,6 @@ elif intro_question == "Delete":
 
 elif intro_question == "Find":
     find_contact()
+
+elif intro_question == "Update":
+    update_contact()
